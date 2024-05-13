@@ -8,44 +8,41 @@ import {
   FingerprintIcon,
   ServerIcon,
 } from "lucide-react";
-import { Balancer } from "react-wrap-balancer";
 
 import { BentoGridTemplate } from "./bentogrid/bentogrid";
 
 export default function BentoGridSection() {
   return (
     <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className=" px-6 lg:px-8">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600"></h2>
 
           <h1
-            className="animate-fade-up font-urban text-3xl font-extrabold tracking-tight opacity-0 sm:text-4xl md:text-5xl lg:text-6xl"
+            className="animate-fade-up font-urban text-3xl font-medium tracking-tight opacity-0 sm:text-4xl md:text-5xl lg:text-7xl"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            <Balancer>The new</Balancer>
+            The new
           </h1>
 
           <h1
-            className="relative animate-fade-up bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text font-urban text-3xl font-extrabold tracking-tight text-transparent opacity-0 sm:text-4xl md:text-5xl lg:text-6xl"
+            className="relative animate-fade-up bg-gradient-to-r from-indigo-500 to-purple-500/80 bg-clip-text font-urban text-3xl font-semibold tracking-tight text-transparent opacity-0 sm:text-4xl md:text-5xl lg:text-7xl"
             style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
           >
-            <Balancer>Golden Standard</Balancer>
+            Golden Standard
           </h1>
 
           <p
-            className="mt-4 max-w-[42rem] animate-fade-up leading-normal text-muted-foreground opacity-0 sm:text-xl sm:leading-8"
+            className="mt-4 max-w-[42rem] animate-fade-up text-balance leading-normal text-muted-foreground opacity-0 sm:text-lg sm:leading-6"
             style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
           >
-            <Balancer>
-              Projectx reimagines financial tracking and optimization with
-              leading-edge AI, offering a new era of precision and ease in
-              personal finance.
-            </Balancer>
+            Projectx reimagines financial tracking and optimization with
+            leading-edge AI, offering a new era of precision and ease in
+            personal finance.
           </p>
         </div>
       </div>
-      <div className="relative overflow-hidden py-16">
+      <div className="relative mx-auto max-w-6xl overflow-hidden py-16">
         <BentoGridTemplate />
       </div>
     </div>

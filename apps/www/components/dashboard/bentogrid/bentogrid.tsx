@@ -22,7 +22,7 @@ import { BentoGrid, BentoGridItem } from "./bento-grid";
 
 export function BentoGridTemplate() {
   return (
-    <BentoGrid className="mx-auto max-w-4xl md:auto-rows-[20rem]">
+    <BentoGrid className="gap-5 md:auto-rows-[20rem]">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}

@@ -131,6 +131,11 @@ const config = {
             opacity: "1",
           },
         },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -142,6 +147,9 @@ const config = {
         // Fade in and out
         "fade-in": "fade-in 0.4s",
         "fade-out": "fade-out 0.4s",
+
+        // border beam
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
     },
   },

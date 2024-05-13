@@ -27,7 +27,13 @@ export async function UserNav() {
   if (!user) {
     return (
       <Link href="/signin">
-        <Button className="relative rounded-lg">Sign In</Button>
+        <Button
+          className="relative rounded-lg bg-accent/90"
+          size="sm"
+          variant="ghost"
+        >
+          Sign In
+        </Button>
       </Link>
     );
   }

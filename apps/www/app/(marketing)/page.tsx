@@ -22,62 +22,49 @@ export default async function IndexPage() {
   const { userId } = auth();
   return (
     <>
-      <section className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] space-y-6 pt-8 lg:pb-28 lg:pt-28">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-5 text-center">
+      <section className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] space-y-6 pt-8 lg:pb-28 lg:pt-16">
+        <div className="container flex max-w-7xl flex-col items-center gap-7 text-center">
           <Link
             href="https://twitter.com/codehagen"
             className={cn(
               buttonVariants({ variant: "outline", size: "sm" }),
-              "animate-fade-up opacity-0",
+              "animate-fade-in rounded-full px-4 text-xs opacity-0 duration-1000",
             )}
-            style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+            style={{ animationDelay: "0.1s", animationFillMode: "forwards" }}
             target="_blank"
           >
-            Introducing on <Icons.twitter className="ml-2 h-4 w-4" />
+            Introducing on <Icons.twitter className="ml-2 h-3 w-3" />
           </Link>
 
           <h1
-            className="animate-fade-up font-urban text-4xl font-extrabold tracking-tight opacity-0 sm:text-5xl md:text-6xl lg:text-7xl"
-            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+            className="animate-fade-down pb-6 font-urban text-5xl font-medium leading-none tracking-tighter opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+            style={{ animationDelay: "0.2s", animationFillMode: "forwards" }}
           >
-            <Balancer>
-              Budget Better, Gain More Experience{" "}
-              <span className="relative bg-gradient-to-r from-indigo-500 to-purple-500/80 bg-clip-text font-extrabold text-transparent">
-                Badget
-              </span>
-            </Balancer>
+            Budget Better, Gain More Experience{" "}
+            <span className="relative bg-gradient-to-r from-indigo-500 to-purple-500/80 bg-clip-text text-transparent">
+              Badget
+            </span>
           </h1>
 
           <p
-            className="max-w-[42rem] animate-fade-up leading-normal text-muted-foreground opacity-0 sm:text-xl sm:leading-8"
-            style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
+            className="max-w-[42rem] animate-fade-down text-balance leading-normal text-muted-foreground opacity-0 [--animation-delay:250ms] sm:text-lg sm:leading-8"
+            style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
           >
-            <Balancer>
-              Empower your financial management with AI-driven insights, making
-              tracking and optimizing your finances effortless.
-            </Balancer>
+            Empower your financial management with AI-driven insights, making
+            tracking and optimizing your finances effortless.
           </p>
 
           <div
-            className="flex animate-fade-up justify-center space-x-2 opacity-0 md:space-x-4"
+            className="flex animate-fade-down justify-center space-x-2 opacity-0 md:space-x-4"
             style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
           >
             <GetStartedButton />
-            <Link
-              href={userId ? "/dashboard" : "/signin"}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "px-4",
-              )}
-            >
-              <Icons.chevrondown className="mr-2 h-4 w-4" />
-              <p>
-                <span className="hidden sm:inline-block">Lets explore</span>{" "}
-                Badget{" "}
-              </p>
-            </Link>
           </div>
-          <div className="mt-40">
+          <div
+            className="relative -z-10 mt-20 animate-fade-up opacity-0 duration-1000"
+            style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
+          >
+            <div className="absolute -bottom-1/4 -left-[10%] -right-[10%] -top-1/4 -z-10 max-w-[100vw] blur-3xl [background:radial-gradient(#6365f1b4,transparent)]" />
             <MovingBorderImage
               src="https://github.com/projectx-codehagen/Badget/assets/24507211/2c2b8e43-3d18-4b28-b8d0-5dc0cbdb530f"
               alt="hero"
@@ -90,6 +77,8 @@ export default async function IndexPage() {
           </div>
         </div>
       </section>
+
+      
 
       {/* <BusinessLine /> */}
       <BentoGridSection />

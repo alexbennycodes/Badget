@@ -87,101 +87,66 @@ export function MovingBorderImage({
   duration?: number;
 }) {
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-xl p-[1px]",
-        imageClassName,
-      )}
-      style={{
-        display: "inline-block", // Make sure the container is only as big as it needs to be
-        position: "relative", // Ensures proper stacking
-      }}
-    >
-      <MovingBorder duration={duration} rx="30%" ry="30%">
-        <div
-          className={cn(
-            "absolute inset-0 bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)] opacity-[0.8]",
-            borderClassName,
-          )}
-        />
-      </MovingBorder>
-
+    <div className="relative rounded-xl">
       <Image
         src={src}
         alt={alt}
-        className="rounded-xl "
+        className="rounded-[inherit] border"
         width={2432}
         height={2500}
+      />
+      <MovingBorder
+        size={250}
+        duration={duration}
+        delay={9}
+        className={borderClassName}
       />
     </div>
   );
 }
 
 export const MovingBorder = ({
-  children,
-  duration = 2000,
-  rx,
-  ry,
-  ...otherProps
+  className,
+  size = 200,
+  duration = 15,
+  anchor = 90,
+  borderWidth = 1.5,
+  colorFrom = "#a855f7cc",
+  colorTo = "#6366f1",
+  delay = 0,
 }: {
-  children: React.ReactNode;
+  className?: string;
+  size?: number;
   duration?: number;
-  rx?: string;
-  ry?: string;
-  [key: string]: any;
+  borderWidth?: number;
+  anchor?: number;
+  colorFrom?: string;
+  colorTo?: string;
+  delay?: number;
 }) => {
-  const pathRef = useRef<any>();
-  const progress = useMotionValue<number>(0);
-
-  useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
-    }
-  });
-
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x,
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y,
-  );
-
-  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
-
   return (
-    <>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        className="absolute h-full w-full"
-        width="100%"
-        height="100%"
-        {...otherProps}
-      >
-        <rect
-          fill="none"
-          width="100%"
-          height="100%"
-          rx={rx}
-          ry={ry}
-          ref={pathRef}
-        />
-      </svg>
-      <motion.div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          display: "inline-block",
-          transform,
-        }}
-      >
-        {children}
-      </motion.div>
-    </>
+    <div
+      style={
+        {
+          "--size": size,
+          "--duration": duration,
+          "--anchor": anchor,
+          "--border-width": borderWidth,
+          "--color-from": colorFrom,
+          "--color-to": colorTo,
+          "--delay": `-${delay}s`,
+        } as React.CSSProperties
+      }
+      className={cn(
+        "absolute inset-[0] rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent]",
+
+        // mask styles
+        "![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)]",
+
+        // pseudo styles
+        "after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]",
+        className,
+      )}
+    />
   );
 };
